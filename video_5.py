@@ -31,7 +31,7 @@ try:
         frame_img = Image.open(f"frames/frame_{frame:04}.png")
         disp.ShowImage(frame_img)
         frame += 1
-        time.sleep(1/60)
+        time.sleep(1/29.94)
     
 except IOError as e:
     logging.info(e)    

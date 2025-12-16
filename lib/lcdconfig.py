@@ -34,7 +34,7 @@ import spidev
 import logging
 import numpy as np
 from gpiozero import *
-
+led = LED(2)
 class RaspberryPi:
     def __init__(self,spi=spidev.SpiDev(0,0),spi_freq=40000000,rst = 27,dc = 25,bl = 18,bl_freq=1000,i2c=None,i2c_freq=100000):
         self.np=np

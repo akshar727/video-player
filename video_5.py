@@ -1,13 +1,9 @@
-#!/usr/bin/python
-# -*- coding: UTF-8 -*-
-#import chardet
 import os
-import sys 
 import time
 import logging
 import spidev as SPI
 from lib import LCD_1inch83
-from PIL import Image, ImageDraw, ImageFont
+from PIL import Image
 
 # Raspberry Pi pin configuration:
 RST = 27
@@ -18,7 +14,6 @@ device = 0
 logging.basicConfig(level = logging.DEBUG)
 
 try:
-    # display with hardware SPI:
     ''' Warning!!!Don't  creation of multiple displayer objects!!! '''
     #disp = LCD_1inch83.LCD_1inch83(spi=SPI.SpiDev(bus, device),spi_freq=10000000,rst=RST,dc=DC,bl=BL)
     disp = LCD_1inch83.LCD_1inch83()
@@ -28,18 +23,15 @@ try:
     disp.clear()
     #Set the backlight to 100
     disp.bl_DutyCycle(50)
-    frame = 0
+    frame = 1
     while True:
+        print("showing a frame")
         if not os.path.exists(f"frames/frame_{frame:04}.png"):
-            frame = 0
+            frame = 1
         frame_img = Image.open(f"frames/frame_{frame:04}.png")
         disp.ShowImage(frame_img)
         frame += 1
-        time.sleep(1000/15)
-
-
-    # disp.module_exit()
-    # logging.info("quit:")
+        time.sleep(1/60)
     
 except IOError as e:
     logging.info(e)    

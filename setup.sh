@@ -12,7 +12,7 @@ echo "Moving over autoplay service..."
 ssh "$RPI" "sudo chmod 777 /etc/systemd/system/"
 scp autoplay.service "$RPI:/etc/systemd/system/autoplay.service"
 echo "Converting video..."
-ffmpeg -i input.mp4 -map 0:v -vf "transpose=2,scale=240:280" frames/frame_%04d.png -map 0:a -c:a pcm_s16le vid.wav
+ffmpeg -i input.mp4 -map 0:v -vf "transpose=1,scale=240:280" frames/frame_%04d.png -map 0:a -c:a pcm_s16le vid.wav
 
 python3 preconvert_frames.py
 

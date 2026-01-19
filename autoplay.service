@@ -4,8 +4,8 @@ After=sound.target
 
 [Service]
 Type=simple
-User=akssh
-Group=akssh
+User=tdesai
+Group=tdesai
 SupplementaryGroups=audio video spi i2c gpio
 WorkingDirectory=/opt/video-player-main
 Environment="SDL_AUDIODRIVER=alsa"

@@ -1,0 +1,20 @@
+[Unit]
+Description=AutoPlay Video Player
+After=sound.target
+
+[Service]
+Type=simple
+User=akssh
+Group=akssh
+SupplementaryGroups=audio video spi i2c gpio
+WorkingDirectory=/opt/video-player-main
+Environment="SDL_AUDIODRIVER=alsa"
+Environment="AUDIODEV=hw:1,0"
+ExecStart=/usr/bin/python3 /opt/video-player-main/video_player.py
+Restart=on-failure
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=graphical.target
